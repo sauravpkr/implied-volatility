@@ -1,0 +1,3 @@
+market status api= https://www.nseindia.com/api/marketStatus
+indices option name = NIFTY 08 OCT 9300 PE     ("SECURITY" "EXPIRY DATE" "MONTH" "STRIKEPRICE" "OPTION_TYPE")
+stock option name = SBIN OCT 180 PE         ("SECURITY" "MONTH" " STRIKEPRICE" "OPTION_TYPE")
