@@ -7,7 +7,8 @@ from apscheduler.schedulers.background import BackgroundScheduler
 
 
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(market_status_job,'interval',seconds=5)
+sched.add_job(market_status_job,'interval',seconds=300)
+sched.add_job(market_data_job,'interval',seconds=300)
 sched.start()
 
 app = Flask(__name__)
