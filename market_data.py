@@ -1,6 +1,8 @@
 import requests
 import json
+import database_operation
 
+marketStatus = 'Close'
 
 def get_stock_data(securities):
     cookies=  "977E0247365692D2A9075FFCB57548AD~2Lkkb7B4CGYq4IoDwtc9YxecAplXUEilUnSDbNpOB+vHnWn7FkmjSLLCnb2Dk4UdkLfUa82KfJyPYaB5nljwoYu6Yhlhev4UrLgJHgKNA7olHYVHnHRPG1+tDI2NDPcrJUy8L2vZIJxr4TfejOTM6tRj8jr/mpztalDrlhNcRGA"
@@ -30,7 +32,10 @@ def market_status_api():
     json_data=json.loads(response.text)
     market_status=json_data["marketState"][0]["marketStatus"]
     #market_status= market_status[0]
-    return market_status
+    global marketStatus
+    marketStatus = market_status
+
+
 
 def pull_iv(securities):
     cookies=  "977E0247365692D2A9075FFCB57548AD~2Lkkb7B4CGYq4IoDwtc9YxecAplXUEilUnSDbNpOB+vHnWn7FkmjSLLCnb2Dk4UdkLfUa82KfJyPYaB5nljwoYu6Yhlhev4UrLgJHgKNA7olHYVHnHRPG1+tDI2NDPcrJUy8L2vZIJxr4TfejOTM6tRj8jr/mpztalDrlhNcRGA"
@@ -93,14 +98,14 @@ def pull_iv(securities):
                 datalist2= tuple(datalist2)
                 data.append(datalist2)
     CE_PE=[]
-    CE_PE.append(CE)
-    CE_PE.append(PE)
+    CE_PE=CE+PE
     return data, CE_PE
 
 
 if __name__ == "__main__":
-    data,cepe=pull_iv('NIFTY')
-    print(cepe)
+    market_status_api()
+
+
 
 
     
