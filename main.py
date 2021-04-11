@@ -8,13 +8,13 @@ import os
 
 
 sched = BackgroundScheduler(daemon=True)
-sched.add_job(market_status_job,'interval',seconds=300)
-sched.add_job(market_data_job,'interval',seconds=300)
+sched.add_job(market_status_job,'interval',max_instances=10, seconds=300)
+sched.add_job(market_data_job,'interval',max_instances=10,seconds=300)
 sched.start()
 
 app = Flask(__name__)
 PORT= os.environ.get('PORT')
-
+@app.route("/")
 @app.route("/home")
 def home():
     """ Function for test purposes. """
