@@ -8,8 +8,14 @@ def market_status_job():
     print(marketStatus)
 
 def market_data_job():
-    data = get_stock_data('NIFTY')
-    insert_data_into_database(data)
+    if marketStatus == 'Open':
+        data = get_stock_data('NIFTY')
+        insert_data_into_database(data)
+    else:
+        time.sleep(10)
+        print("not open")
+
+    
 
 
 

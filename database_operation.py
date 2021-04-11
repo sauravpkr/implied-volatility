@@ -1,7 +1,7 @@
 import pymongo
 import urllib
 from pymongo import MongoClient
-from market_data import get_stock_data
+from market_data import *
 #from iv import pull_iv
 import os
 

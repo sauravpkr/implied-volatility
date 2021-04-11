@@ -1,31 +1,20 @@
-# Schedule Library imported
-import schedule
-import time
-x=5
-# Functions setup
-def sudo_placement():
-	print("Get ready for Sudo Placement at Geeksforgeeks")
+from apscheduler.schedulers.background import BackgroundScheduler
+from flask import Flask
 
-def good_luck():
-	print("Good Luck for Test")
+def sensor():
+    """ Function for test purposes. """
+    print("Scheduler is alive!")
 
-def work():
-	print("Study and work hard")
+sched = BackgroundScheduler(daemon=True)
+sched.add_job(sensor,'interval',seconds=5)
+sched.start()
 
-def bedtime():
-	print("It is bed time go rest")
-	
-def geeks():
-	print("Shaurya says Geeksforgeeks")
+app = Flask(__name__)
 
-# Task scheduling
-# After every 10mins geeks() is called.
-schedule.every(x).seconds.do(geeks)
-schedule.every(7).seconds.do(geeks)
+@app.route("/home")
+def home():
+    """ Function for test purposes. """
+    return "Welcome Home :) !"
 
-while True:
-
-	# Checks whether a scheduled task
-	# is pending to run or not
-	schedule.run_pending()
-	time.sleep(1)
+if __name__ == "__main__":
+    app.run()

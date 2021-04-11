@@ -1,27 +1,21 @@
 from flask import Flask,jsonify
 from flask_restful import Api,Resource
 import schedule
-from flask_sqlalchemy import SQLAlchemy
 import threading
-#import market_data
-import schdulejob
+from schdulejob import *
+from apscheduler.schedulers.background import BackgroundScheduler
 
 
-app= Flask(__name__)
-api=Api(app)
+sched = BackgroundScheduler(daemon=True)
+sched.add_job(market_status_job,'interval',seconds=5)
+sched.start()
 
+app = Flask(__name__)
 
-schedule.every().day.at("09:00").do(market_status_job)
-
-
-
-
-
-
-
-
+@app.route("/home")
+def home():
+    """ Function for test purposes. """
+    return "Welcome Home :) !"
 
 if __name__ == "__main__":
-    app.run(debug=True)
-    
-     
+    app.run()
