@@ -1,4 +1,4 @@
-from flask import Flask,jsonify
+from flask import Flask,jsonify,render_template
 from flask_restful import Api,Resource
 import schedule
 import threading
@@ -18,7 +18,7 @@ PORT= os.environ.get('PORT')
 @app.route("/home")
 def home():
     """ Function for test purposes. """
-    return "Welcome Home :) !"
+    return render_template('Template/Acctav.html')
 
 
 
