@@ -18,7 +18,7 @@ PORT= os.environ.get('PORT')
 @app.route("/home")
 def home():
     """ Function for test purposes. """
-    return render_template('Template\Acctav.html')
+    return render_template('./Template/Acctav.html')
 
 
 
